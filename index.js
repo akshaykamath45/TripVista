@@ -165,11 +165,34 @@ async function addUser(newUser) {
         console.log("Failed to add user ", error)
     }
 }
-addUser({
-    email: 'xyz@gmail.com',
-    password: "xyz123",
-    profilePictureUrl: "randomxyz.com",
-    username: "xyz",
-    nickname: "exwhyzee",
-    phoneNumber: 123456789
-})
+// addUser({
+//     email: 'xyz@gmail.com',
+//     password: "xyz123",
+//     profilePictureUrl: "randomxyz.com",
+//     username: "xyz",
+//     nickname: "exwhyzee",
+//     phoneNumber: 123456789
+// })
+
+
+// add review to travel destination
+async function addReview(userId, destinationId, reviewText) {
+    try {
+        const destination = await Destination.findById(destinationId)
+        if (destination) {
+            const review = {
+                user: userId,
+                text: reviewText
+            }
+            destination.reviews.push(review)
+            await destination.save()
+            const populateDestination = await Destination.findById(destinationId).populate('reviews.user', 'username email profilePictureUrl');
+            console.log("Updated reviews for the destination ", populateDestination)
+        } else {
+            console.log("Cannot find the destination")
+        }
+    } catch (error) {
+        console.log("Failed to add review ", error)
+    }
+}
+addReview("651a78ffa62e3d86b354a094", "651a5da9bdcadafee8753dee", "One of the best place in france")
