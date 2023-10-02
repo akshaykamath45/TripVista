@@ -175,3 +175,19 @@ app.post("/destinations/:destinationId/reviews", async (req, res) => {
         res.status(500).json({ error: "Failed to add review for the destination" })
     }
 })
+
+
+//retrieving reviews of a travel destination
+app.get("/destinations/:destinationId/reviews", async (req, res) => {
+    try {
+        const { destinationId } = req.params
+        const destinationReviews = await getFirstThreeReviews(destinationId)
+        if (destinationReviews) {
+            res.json({ message: `First 3 Reviews for the destination ${destinationReviews.name}`, reviews: destinationReviews.reviews })
+        } else {
+            res.status(404).json({ error: "Cannot find the destination" })
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Failed to retreive reviews for the destination" })
+    }
+})
