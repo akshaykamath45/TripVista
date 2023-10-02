@@ -195,4 +195,26 @@ async function addReview(userId, destinationId, reviewText) {
         console.log("Failed to add review ", error)
     }
 }
-addReview("651a78ffa62e3d86b354a094", "651a5da9bdcadafee8753dee", "One of the best place in france")
+// addReview("651a78ffa62e3d86b354a094", "651a5da9bdcadafee8753dee", "One of the best place in france")
+
+
+// querying reviews of travel destination
+//(retrieve the first 3 reviews of a travel destination, populated with user details)
+async function getFirstThreeReviews(destinationId) {
+    try {
+        const populatedDestination = await Destination.findById(destinationId).populate({
+            path: 'reviews.user',
+            select: 'username email profilePicutureUrl',
+            options: { limit: 3 }
+        })
+        if (populatedDestination) {
+            const firstThreeReviews = populatedDestination.reviews.slice(0, 3)
+            console.log(`First 3 reviews of the destination ${populatedDestination.name} `, firstThreeReviews)
+        } else {
+            console.log("Cannot find the destination")
+        }
+    } catch (error) {
+        console.log('Failed to retrieve the reviews')
+    }
+}
+getFirstThreeReviews("651a5da9bdcadafee8753dee")
