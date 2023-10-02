@@ -24,4 +24,19 @@ async function createNewTravelDestination(travelDestination) {
         console.log("Failed to add new destination ", error)
     }
 }
-createNewTravelDestination(sampleDestination)
+// createNewTravelDestination(sampleDestination)
+
+//read a travel destinaton
+async function readTravelDestination(destinationName) {
+    try {
+        const findDestination = await Destination.findOne({ name: destinationName })
+        if (findDestination) {
+            console.log("Destination found ", findDestination)
+        } else {
+            console.log(`Cannot find destination with name ${destinationName}`)
+        }
+    } catch (error) {
+        console.log("Failed to find the travel destination ", error)
+    }
+}
+readTravelDestination("Sample Destination")
