@@ -31,6 +31,7 @@ async function readTravelDestination(destinationName) {
         const findDestination = await Destination.findOne({ name: destinationName })
         if (findDestination) {
             console.log("Destination found ", findDestination)
+            return findDestination
         } else {
             console.log(`Cannot find destination with name ${destinationName}`)
         }

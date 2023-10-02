@@ -46,3 +46,18 @@ app.post("/destinations", async (req, res) => {
     }
 })
 
+
+//reading a travel destination API
+app.get("/destinations/:name", async (req, res) => {
+    try {
+        const { name } = req.params;
+        const destination = await readTravelDestination(name);
+        if (destination) {
+            res.json({ message: "Destination found", destination: destination })
+        } else {
+            res.status(404).json({ error: "Destination not found" })
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Failed to find the destination" })
+    }
+})
