@@ -87,6 +87,7 @@ async function readTravelDestinationsByRating() {
         const destinations = await Destination.find({}).sort({ rating: -1 })
         if (destinations.length > 0) {
             console.log("Destinations sorted in descending order by rating ", destinations)
+            return destinations
         } else {
             console.log("No destinations found to be sorted")
         }
