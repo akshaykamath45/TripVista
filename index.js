@@ -49,20 +49,20 @@ app.post("/destinations", async (req, res) => {
 
 //placing static routes first over dynamic routes
 //reading travel destinations by rating
-app.get("/destinations/rating",async(req,res)=>{
-    try{
-      const destinations=await readTravelDestinationsByRating()
-      if(destinations){
-        res.json({message:"Destinations sorted by rating in descending order",destinations:destinations})
-      }else{
-        res.status(404).json({error:"No destinations found to be sorted"})
-      }
-    }catch(error){
-      res.status(500).json({error:"Failed to sort destinations by rating"})
-  }
-  })
+app.get("/destinations/rating", async (req, res) => {
+    try {
+        const destinations = await readTravelDestinationsByRating()
+        if (destinations) {
+            res.json({ message: "Destinations sorted by rating in descending order", destinations: destinations })
+        } else {
+            res.status(404).json({ error: "No destinations found to be sorted" })
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Failed to sort destinations by rating" })
+    }
+})
 
-  
+
 //reading a travel destination API
 app.get("/destinations/:name", async (req, res) => {
     try {
@@ -106,5 +106,22 @@ app.get("/destinations/location/:location", async (req, res) => {
         }
     } catch (error) {
         res.status(500).json({ error: "Failed to retrieve the data from location" })
+    }
+})
+
+
+//updating a travel destination API
+app.post("/destinations/:destinationId", async (req, res) => {
+    try {
+        const { destinationId } = req.params
+        const updateData = req.body
+        const destination = await updateTravelDestination(destinationId, updateData)
+        if (destination) {
+            res.json({ message: "Updated destination successfully", destination: destination })
+        } else {
+            res.status(404).json({ error: "Cannot find the destination to update" })
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Failed to update travel destinations" })
     }
 })

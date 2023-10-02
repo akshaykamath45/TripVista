@@ -106,6 +106,7 @@ async function updateTravelDestination(destinationId, updatedDestinationData) {
             destination.set(updatedDestinationData)
             const updatedDestination = await destination.save()
             console.log(`Updated destination ${destination.name} `, updatedDestination)
+            return updatedDestination
         } else {
             console.log("Cannot find the destination to update")
         }
