@@ -13,7 +13,7 @@ const sampleDestination = {
     rating: 8
 };
 const parisDestination = {
-    name: "Paris, France",
+    name: "Paris",
     location: {
         city: "Paris",
         country: "France"
@@ -22,7 +22,7 @@ const parisDestination = {
     rating: 9.5
 };
 const newYorkCityDestination = {
-    name: "New York City, USA",
+    name: "New York City",
     location: {
         city: "New York City",
         country: "United States"
@@ -31,7 +31,7 @@ const newYorkCityDestination = {
     rating: 9.2
 };
 const tokyoDestination = {
-    name: "Tokyo, Japan",
+    name: "Tokyo",
     location: {
         city: "Tokyo",
         country: "Japan"
@@ -40,7 +40,7 @@ const tokyoDestination = {
     rating: 8.9
 };
 const romeDestination = {
-    name: "Rome, Italy",
+    name: "Rome",
     location: {
         city: "Rome",
         country: "Italy"
@@ -49,7 +49,7 @@ const romeDestination = {
     rating: 9.0
 };
 const baliDestination = {
-    name: "Bali, Indonesia",
+    name: "Bali",
     location: {
         city: "Denpasar",
         country: "Indonesia"
@@ -58,7 +58,7 @@ const baliDestination = {
     rating: 9.3
 };
 const capeTownDestination = {
-    name: "Cape Town, South Africa",
+    name: "Cape Town",
     location: {
         city: "Cape Town",
         country: "South Africa"
@@ -67,7 +67,7 @@ const capeTownDestination = {
     rating: 9.1
 };
 const kyotoDestination = {
-    name: "Kyoto, Japan",
+    name: "Kyoto",
     location: {
         city: "Kyoto",
         country: "Japan"
@@ -77,7 +77,7 @@ const kyotoDestination = {
 };
 
 const santoriniDestination = {
-    name: "Santorini, Greece",
+    name: "Santorini",
     location: {
         city: "Santorini",
         country: "Greece"
