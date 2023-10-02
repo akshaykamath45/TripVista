@@ -61,3 +61,18 @@ app.get("/destinations/:name", async (req, res) => {
         res.status(500).json({ error: "Failed to find the destination" })
     }
 })
+
+
+//reading all travel destinations API
+app.get("/destinations", async (req, res) => {
+    try {
+        const destinations = await readAllTravelDestinations()
+        if (destinations) {
+            res.json({ message: "All destinations fetched successfully", destinations: destinations })
+        } else {
+            res.status(404).json({ error: "Cannot find all destinations" })
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Failed to retrieve all the destinations" })
+    }
+})

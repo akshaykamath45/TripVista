@@ -48,6 +48,7 @@ async function readAllTravelDestinations() {
         const destinations = await Destination.find({});
         if (destinations) {
             console.log("All destinations ", destinations)
+            return destinations;
         } else {
             console.log("Cannot find all destinations")
         }
