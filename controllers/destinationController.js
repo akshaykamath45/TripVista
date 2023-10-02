@@ -126,6 +126,7 @@ async function deleteTravelDestination(destinationId) {
 
         if (deleteDestination) {
             console.log(`Deleted destination with ID ${destinationId} `, destination)
+            return deleteDestination
         } else {
             console.log("Cannot find the destination to delete")
         }

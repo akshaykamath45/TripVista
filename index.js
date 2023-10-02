@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 3000
 app.listen((PORT), () => {
-    console.log(`Serveris listening on port ${PORT}`)
+    console.log(`Server is listening on port ${PORT}`)
 })
 
 
@@ -125,3 +125,21 @@ app.post("/destinations/:destinationId", async (req, res) => {
         res.status(500).json({ error: "Failed to update travel destinations" })
     }
 })
+
+
+//deleting a travel destination API
+app.delete("/destinations/:destinationId", async (req, res) => {
+    try {
+        const { destinationId } = req.params
+        const destination = await deleteTravelDestination(destinationId)
+        if (destination) {
+            res.json({ message: "Deleted destination successfully", destination: destination })
+        } else {
+            res.status(404).json({ error: "Cannot find the destination to delete" })
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Failed to delete the destination" })
+    }
+})
+
+
