@@ -12,26 +12,6 @@ const sampleDestination = {
     description: "This is a sample travel destination with a brief description.",
     rating: 8
 };
-const barcelonaDestination = {
-    name: "Barcelona",
-    location: {
-        city: "Barcelona",
-        country: "Spain"
-    },
-    description: "Barcelona, the capital of Catalonia, is famous for its unique architecture, vibrant street life, and beautiful beaches along the Mediterranean coast.",
-    rating: 9.0
-};
-const madridDestination = {
-    name: "Madrid",
-    location: {
-        city: "Madrid",
-        country: "Spain"
-    },
-    description: "Madrid, the capital of Spain, is known for its rich history, world-class museums, and lively culture, making it a great destination for art and history enthusiasts.",
-    rating: 8.8
-};
-
-
 
 
 //creating new travel destinaton
@@ -46,8 +26,6 @@ async function createNewTravelDestination(travelDestination) {
     }
 }
 // createNewTravelDestination(sampleDestination)
-createNewTravelDestination(barcelonaDestination)
-createNewTravelDestination(madridDestination)
 
 
 //read a travel destinaton
@@ -65,6 +43,7 @@ async function readTravelDestination(destinationName) {
 }
 // readTravelDestination("Kyoto")
 
+
 //read all travel destinations
 async function readAllTravelDestinations() {
     try {
@@ -79,6 +58,7 @@ async function readAllTravelDestinations() {
     }
 }
 // readAllTravelDestinations();
+
 
 //read all travel destinations by location
 async function readTravelDestinationsByLocation(destinationLocation) {
@@ -151,4 +131,21 @@ async function deleteTravelDestination(destinationId) {
         console.log("Failed to delete the destination", error)
     }
 }
-deleteTravelDestination("651a5da8bdcadafee8753ded") //deleting "Sample City"
+// deleteTravelDestination("651a5da8bdcadafee8753ded") deleting "Sample City"
+
+
+//filter destination by minimum rating
+async function filterDestinationsByRating(minimumRating) {
+    try {
+        const destinations = await Destination.find({})
+        const filterDestinations = destinations.filter((destination) => destination.rating >= minimumRating)
+        if (filterDestinations.length > 0) {
+            console.log(`Destinations with minimum rating of ${minimumRating}`, filterDestinations)
+        } else {
+            console.log(`Cannot find destinations with minimum rating of ${minimumRating}`)
+        }
+    } catch (error) {
+        console.log("Failed to filter destinations by ratings ", error)
+    }
+}
+filterDestinationsByRating(10);
