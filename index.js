@@ -114,4 +114,23 @@ async function readTravelDestinationsByRating() {
         console.log("Failed to retrieve destination based on ratings ", error)
     }
 }
-readTravelDestinationsByRating()
+// readTravelDestinationsByRating()
+
+
+//updating travel destination by ID
+async function updateTravelDestination(destinationId, updatedDestinationData) {
+    try {
+        const destination = await Destination.findOne({ _id: destinationId })
+        if (destination) {
+            destination.set(updatedDestinationData)
+            const updatedDestination = await destination.save()
+            console.log(`Updated destination ${destination.name} `, updatedDestination)
+        } else {
+            console.log("Cannot find the destination to update")
+        }
+
+    } catch (error) {
+        console.log('Failed to update the travel destination ', error)
+    }
+}
+updateTravelDestination("651a5da9bdcadafee8753dee", { rating: 9.8 })
