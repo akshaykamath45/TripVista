@@ -70,6 +70,7 @@ async function readTravelDestinationsByLocation(destinationLocation) {
         })
         if (destinations.length > 0) {
             console.log(`Destinations with location ${destinationLocation} `, destinations)
+            return destinations
         } else {
             console.log(`No destinations found with location ${destinationLocation}`)
         }

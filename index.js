@@ -76,3 +76,19 @@ app.get("/destinations", async (req, res) => {
         res.status(500).json({ error: "Failed to retrieve all the destinations" })
     }
 })
+
+
+//reading travel destinations by location
+app.get("/destinations/location/:location", async (req, res) => {
+    try {
+        const { location } = req.params
+        const destinations = await readTravelDestinationsByLocation(location)
+        if (destinations) {
+            res.json({ message: "Destinations found", destinations: destinations })
+        } else {
+            res.status(404).json({ error: `Cannot find any destination from the location ${location}` })
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Failed to retrieve the data from location" })
+    }
+})
