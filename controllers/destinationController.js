@@ -192,7 +192,7 @@ async function getFirstThreeReviews(destinationId) {
         if (populatedDestination) {
             const firstThreeReviews = populatedDestination.reviews.slice(0, 3)
             console.log(`First 3 reviews of the destination ${populatedDestination.name} `, firstThreeReviews)
-            return populatedDestination
+            return firstThreeReviews
         } else {
             console.log("Cannot find the destination")
         }

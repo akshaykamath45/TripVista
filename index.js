@@ -181,9 +181,10 @@ app.post("/destinations/:destinationId/reviews", async (req, res) => {
 app.get("/destinations/:destinationId/reviews", async (req, res) => {
     try {
         const { destinationId } = req.params
+        const destination = await Destination.findById(destinationId)
         const destinationReviews = await getFirstThreeReviews(destinationId)
         if (destinationReviews) {
-            res.json({ message: `First 3 Reviews for the destination ${destinationReviews.name}`, reviews: destinationReviews.reviews })
+            res.json({ message: `First 3 Reviews for the destination ${destination.name}`, reviews: destinationReviews })
         } else {
             res.status(404).json({ error: "Cannot find the destination" })
         }
