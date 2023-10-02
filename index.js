@@ -98,4 +98,20 @@ async function readTravelDestinationsByLocation(destinationLocation) {
         console.log("Failed to retrieve travel destinations ", error)
     }
 }
-readTravelDestinationsByLocation("Spain")
+// readTravelDestinationsByLocation("Spain")
+
+
+//read all travel destinations by rating
+async function readTravelDestinationsByRating() {
+    try {
+        const destinations = await Destination.find({}).sort({ rating: -1 })
+        if (destinations.length > 0) {
+            console.log("Destinations sorted in descending order by rating ", destinations)
+        } else {
+            console.log("No destinations found to be sorted")
+        }
+    } catch (error) {
+        console.log("Failed to retrieve destination based on ratings ", error)
+    }
+}
+readTravelDestinationsByRating()
