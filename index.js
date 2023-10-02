@@ -157,3 +157,21 @@ app.get("/destinations/filter/:minRating", async (req, res) => {
         res.status(500).json({ error: `Failed to retrieve destinations with minimum rating of ${minimumRating}` })
     }
 })
+
+
+//adding review to a travel destination
+app.post("/destinations/:destinationId/reviews", async (req, res) => {
+    try {
+        const { destinationId } = req.params
+        const userId = req.body.userId
+        const reviewText = req.body.reviewText
+        const destinationReview = await addReview(userId, destinationId, reviewText)
+        if (destinationReview) {
+            res.json({ message: "Added review successfully", destination: destinationReview })
+        } else {
+            res.status(404).json({ error: "Cannot find the destination to add review" })
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Failed to add review for the destination" })
+    }
+})

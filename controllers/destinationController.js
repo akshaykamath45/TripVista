@@ -169,6 +169,7 @@ async function addReview(userId, destinationId, reviewText) {
             await destination.save()
             const populateDestination = await Destination.findById(destinationId).populate('reviews.user', 'profilePictureUrl');
             console.log("Updated reviews for the destination ", populateDestination)
+            return populateDestination
         } else {
             console.log("Cannot find the destination")
         }
