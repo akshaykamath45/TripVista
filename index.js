@@ -143,3 +143,17 @@ app.delete("/destinations/:destinationId", async (req, res) => {
 })
 
 
+//filtering destinations by minimum rating
+app.get("/destinations/filter/:minRating", async (req, res) => {
+    try {
+        const { minRating } = req.params
+        const destinations = await filterDestinationsByRating(minRating)
+        if (destinations) {
+            res.json({ message: `Found ${destinations.length}  destinations with minimum rating of ${minRating}`, destinations: destinations })
+        } else {
+            res.status(404).json({ error: `Cannot find destinations with minimum rating of ${minRating}` })
+        }
+    } catch (error) {
+        res.status(500).json({ error: `Failed to retrieve destinations with minimum rating of ${minimumRating}` })
+    }
+})

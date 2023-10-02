@@ -137,7 +137,7 @@ async function deleteTravelDestination(destinationId) {
 // deleteTravelDestination("651a5da8bdcadafee8753ded")
 
 
-//filter destination by minimum rating
+//filter destinations by minimum rating
 async function filterDestinationsByRating(minimumRating) {
     try {
 
@@ -145,6 +145,7 @@ async function filterDestinationsByRating(minimumRating) {
         const filterDestinations = destinations.filter((destination) => destination.rating >= minimumRating)
         if (filterDestinations.length > 0) {
             console.log(`Destinations with minimum rating of ${minimumRating}`, filterDestinations)
+            return filterDestinations
         } else {
             console.log(`Cannot find destinations with minimum rating of ${minimumRating}`)
         }
