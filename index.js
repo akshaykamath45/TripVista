@@ -12,6 +12,25 @@ const sampleDestination = {
     description: "This is a sample travel destination with a brief description.",
     rating: 8
 };
+const barcelonaDestination = {
+    name: "Barcelona",
+    location: {
+        city: "Barcelona",
+        country: "Spain"
+    },
+    description: "Barcelona, the capital of Catalonia, is famous for its unique architecture, vibrant street life, and beautiful beaches along the Mediterranean coast.",
+    rating: 9.0
+};
+const madridDestination = {
+    name: "Madrid",
+    location: {
+        city: "Madrid",
+        country: "Spain"
+    },
+    description: "Madrid, the capital of Spain, is known for its rich history, world-class museums, and lively culture, making it a great destination for art and history enthusiasts.",
+    rating: 8.8
+};
+
 
 
 
@@ -27,6 +46,8 @@ async function createNewTravelDestination(travelDestination) {
     }
 }
 // createNewTravelDestination(sampleDestination)
+createNewTravelDestination(barcelonaDestination)
+createNewTravelDestination(madridDestination)
 
 
 //read a travel destinaton
