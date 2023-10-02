@@ -117,7 +117,7 @@ async function readTravelDestinationsByRating() {
 // readTravelDestinationsByRating()
 
 
-//updating travel destination by ID
+//update a travel destination by ID
 async function updateTravelDestination(destinationId, updatedDestinationData) {
     try {
         const destination = await Destination.findOne({ _id: destinationId })
@@ -134,3 +134,21 @@ async function updateTravelDestination(destinationId, updatedDestinationData) {
     }
 }
 updateTravelDestination("651a5da9bdcadafee8753dee", { rating: 9.8 })
+
+
+//delete a travel destination by ID
+async function deleteTravelDestination(destinationId) {
+    try {
+        const destination = await Destination.findOne({ _id: destinationId })
+        const deleteDestination = await Destination.findOneAndDelete({ _id: destinationId })
+
+        if (deleteDestination) {
+            console.log(`Deleted destination with ID ${destinationId} `, destination)
+        } else {
+            console.log("Cannot find the destination to delete")
+        }
+    } catch (error) {
+        console.log("Failed to delete the destination", error)
+    }
+}
+deleteTravelDestination("651a5da8bdcadafee8753ded") //deleting "Sample City"
