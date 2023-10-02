@@ -15,9 +15,9 @@ const sampleDestination = {
 async function createNewTravelDestination(travelDestination) {
     try {
         const destination = new Destination(travelDestination);
-        const saveDestinaton = await destination.save()
-        console.log("New destination added successfully ", saveDestinaton)
-
+        const saveDestination = await destination.save()
+        console.log("New destination added successfully ", saveDestination)
+        return saveDestination
     } catch (error) {
         console.log("Failed to add new destination ", error)
     }
