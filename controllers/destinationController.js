@@ -191,7 +191,7 @@ async function getFirstThreeReviews(destinationId) {
         console.log('Failed to retrieve the reviews')
     }
 }
-getFirstThreeReviews("651a5da9bdcadafee8753dee")
+// getFirstThreeReviews("651a5da9bdcadafee8753dee")
 
 
 module.exports = {
