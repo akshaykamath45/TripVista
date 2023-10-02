@@ -78,4 +78,24 @@ async function readAllTravelDestinations() {
         console.log("Failed reading all the travel destinations ", error)
     }
 }
-readAllTravelDestinations();
+// readAllTravelDestinations();
+
+//read all travel destinations by location
+async function readTravelDestinationsByLocation(destinationLocation) {
+    try {
+        const destinations = await Destination.find({
+            $or: [
+                { 'location.city': destinationLocation },
+                { 'location.country': destinationLocation }
+            ]
+        })
+        if (destinations.length > 0) {
+            console.log(`Destinations with location ${destinationLocation} `, destinations)
+        } else {
+            console.log(`No destinations found with location ${destinationLocation}`)
+        }
+    } catch (error) {
+        console.log("Failed to retrieve travel destinations ", error)
+    }
+}
+readTravelDestinationsByLocation("Spain")
