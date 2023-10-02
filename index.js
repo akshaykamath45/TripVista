@@ -113,7 +113,7 @@ async function updateTravelDestination(destinationId, updatedDestinationData) {
         console.log('Failed to update the travel destination ', error)
     }
 }
-updateTravelDestination("651a5da9bdcadafee8753dee", { rating: 9.8 })
+// updateTravelDestination("651a5da9bdcadafee8753dee", { rating: 9.8 })
 
 
 //delete a travel destination by ID
@@ -148,4 +148,28 @@ async function filterDestinationsByRating(minimumRating) {
         console.log("Failed to filter destinations by ratings ", error)
     }
 }
-filterDestinationsByRating(10);
+// filterDestinationsByRating(10);
+
+
+//adding user
+async function addUser(newUser) {
+    try {
+        const user = new User(newUser);
+        const userCreated = await user.save();
+        if (userCreated) {
+            console.log("New user created successfully ", userCreated);
+        } else {
+            console.log("New user not created,check again");
+        }
+    } catch (error) {
+        console.log("Failed to add user ", error)
+    }
+}
+addUser({
+    email: 'xyz@gmail.com',
+    password: "xyz123",
+    profilePictureUrl: "randomxyz.com",
+    username: "xyz",
+    nickname: "exwhyzee",
+    phoneNumber: 123456789
+})
